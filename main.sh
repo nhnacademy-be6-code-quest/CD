@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# 스크립트 디렉토리 경로 설정
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
 # 사용법 확인
 if [ "$#" -ne 3 ]; then
     echo "Usage: $0 <PORT_1> <PORT_2> <JAR_FILE>"
@@ -11,10 +14,10 @@ PORT_2=$2
 JAR_FILE=$3
 
 # 다른 스크립트 실행
-source ./setPort.sh
-source ./execute.sh
-source ./terminate.sh
-source ./healthCheck.sh
+source "$SCRIPT_DIR/setPort.sh"
+source "$SCRIPT_DIR/execute.sh"
+source "$SCRIPT_DIR/terminate.sh"
+source "$SCRIPT_DIR/healthCheck.sh"
 
 # 메인 실행 로직
 CURRENT_PORT=$(check_current_port)
