@@ -4,14 +4,15 @@
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
 # 사용법 확인
-if [ "$#" -ne 3 ]; then
-    echo "Usage: $0 <PORT_1> <PORT_2> <JAR_FILE>"
+if [ "$#" -ne 4 ]; then
+    echo "Usage: $0 <PORT_1> <PORT_2> <JAR_FILE> <LOG_FILE>"
     exit 1
 fi
 
 PORT_1=$1
 PORT_2=$2
 JAR_FILE=$3
+LOG_FILE=$4
 
 # 다른 스크립트 실행
 source "$SCRIPT_DIR/setPort.sh"
@@ -22,7 +23,7 @@ source "$SCRIPT_DIR/healthCheck.sh"
 # 메인 실행 로직
 CURRENT_PORT=$(check_current_port)
 NEW_PORT=$(get_new_port)
-start_new_process $NEW_PORT $JAR_FILE
+start_new_process $NEW_PORT $JAR_FILE $LOG_FILE
 
 if health_check $NEW_PORT; then
     echo "Waiting for 1 minute before switching traffic..."
