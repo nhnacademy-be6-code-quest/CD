@@ -2,7 +2,7 @@
 
 # 현재 사용 중인 포트 확인
 check_current_port() {
-    netstat -tlnp | grep -E ":$PORT_1|:$PORT_2" | grep java | awk '{print $4}' | cut -d: -f2
+    netstat -tlnp | grep -E ":$PORT_1|:$PORT_2" | grep java | awk '{print $4}' | cut -c 4-
 }
 
 # 새로운 포트 결정
