@@ -5,8 +5,8 @@ health_check() {
     PORT=$1
     for i in {1..10}
     do
-        sleep 6
-        STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:$PORT/actuator/health)
+        sleep 18
+        STATUS=$(curl -o /dev/null -w "%{http_code}" http://localhost:$PORT/actuator/health)
         if [ $STATUS == "200" ]; then
             echo "Health check passed on port $PORT"
             return 0
